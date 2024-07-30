@@ -229,15 +229,9 @@ class _DashboardPageState extends State<DashboardPage> {
           return Center(
             child: Container(
               width: containerWidth,
-              padding: EdgeInsets.only(
-                top: 40.0,
-                bottom: 20,
-                left: isMobile
-                    ? 10
-                    : isTablet
-                        ? 20
-                        : 90,
-                right: isMobile
+              padding: EdgeInsets.symmetric(
+                vertical: 40.0,
+                horizontal: isMobile
                     ? 10
                     : isTablet
                         ? 20
@@ -395,8 +389,23 @@ class _DashboardPageState extends State<DashboardPage> {
                     width: double.infinity,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      child: SizedBox(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 30),
                         width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          border: Border.all(color: Colors.grey.shade300),
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
