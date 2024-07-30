@@ -101,7 +101,7 @@ class _ReportDetailsState extends State<ReportDetails> {
                     'Report Details',
                     style: TextStyle(
                       fontSize: 32,
-                      fontFamily: 'ArchivoNarrow',
+                      //fontFamily: 'ArchivoNarrow',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -120,7 +120,7 @@ class _ReportDetailsState extends State<ReportDetails> {
 
   Widget _buildCollisionInfoContainer() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 50),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -139,27 +139,396 @@ class _ReportDetailsState extends State<ReportDetails> {
         children: [
           const Text(
             'Collision Information',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
           ),
-          const SizedBox(height: 30),
-          Wrap(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            spacing: 80,
-            runSpacing: 20,
-            children: [
-              _buildDetailColumn(
-                  'Location of Collision', widget.report['Location'] ?? 'N/A'),
-              _buildDetailColumn(
-                  'Time of Collision', widget.report['Time'] ?? 'N/A'),
-              _buildDetailColumn(
-                  'Weather Conditions', widget.report['Weather'] ?? 'N/A'),
-              _buildDetailColumn(
-                  'Road Conditions', widget.report['RoadConditions'] ?? 'N/A'),
-              _buildDetailColumn(
-                  'Road Surface', widget.report['RoadSurface'] ?? 'N/A'),
-              _buildDetailColumn(
-                  'Road Alignment', widget.report['RoadAlignment'] ?? 'N/A'),
-            ],
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn('Location of Collision',
+                    widget.report['Location'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Time of Collision', widget.report['Time'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Weather Conditions', widget.report['Weather'] ?? 'N/A'),
+                _buildDetailColumn('Road Conditions',
+                    widget.report['RoadConditions'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Road Surface', widget.report['RoadSurface'] ?? 'N/A'),
+                _buildDetailColumn('Pavement Markings?',
+                    widget.report['PavementMarkings'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Vehicle Direction', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Damage to other property?', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Vehicle Parked?', widget.report[''] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Reporting Driver's Information",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Last Name', widget.report['Last Name'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'First Name', widget.report['First Name'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Date of Birth', widget.report['Date of Birth'] ?? 'N/A'),
+                _buildDetailColumn("Driver's Licence Number",
+                    widget.report["Driver's Licence Number"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Province/State Driver's Licence Issued In:",
+                    widget.report[
+                            "Province/State Driver's Licence Issued In:"] ??
+                        'N/A'),
+                _buildDetailColumn(
+                    'Address', widget.report['Address'] ?? 'N/A'),
+                _buildDetailColumn('Apt #/Unit', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn('City/Town', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Province/State', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Postal Code/Zip Code', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Cell Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Home Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Business Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn('Email', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Action at Time of Collision', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Wearing a seatbelt?', widget.report[''] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Reporting Driver's Vehicle Information",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Licence Plate', widget.report['Licence Plate'] ?? 'N/A'),
+                _buildDetailColumn('Insurance Provider',
+                    widget.report['Insurance Provider'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Policy Number', widget.report['Policy Number'] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Make", widget.report["Vehicle Make"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Model", widget.report["Vehicle Model"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Year", widget.report["Vehicle Year"] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Vehicle Colour', widget.report['Vehicle Colour'] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 70),
+            child: Text(
+              "Area of Damage",
+              style: TextStyle(
+                fontSize: 22,
+
+                fontWeight: FontWeight.bold,
+                //fontFamily: 'ArchivoNarrow',
+              ),
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Vehicle towed?', widget.report['Vehicle towed?'] ?? 'N/A'),
+                _buildDetailColumn('Towing company:',
+                    widget.report['Towing company:'] ?? 'N/A'),
+                _buildDetailColumn('Tow destination:',
+                    widget.report['Tow destination:'] ?? 'N/A'),
+                _buildDetailColumn('Was there a witness?',
+                    widget.report['Was there a witness?'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Witness Name', widget.report['Witness Name'] ?? 'N/A'),
+                _buildDetailColumn('Witness Phone Number',
+                    widget.report['Witness Phone Number'] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Passenger(s) Information",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildDetailColumn('# of Passengers',
+                    widget.report['# of Passengers'] ?? 'N/A'),
+                const SizedBox(height: 60),
+                Wrap(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  spacing: 80,
+                  runSpacing: 60,
+                  children: [
+                    _buildDetailColumn(
+                        'Last Name', widget.report['Last Name'] ?? 'N/A'),
+                    _buildDetailColumn(
+                        'First Name', widget.report['First Name'] ?? 'N/A'),
+                    _buildDetailColumn(
+                        'Phone Number', widget.report['Phone Number'] ?? 'N/A'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Reporting Driver's Statement",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Statement', widget.report['Statement'] ?? 'N/A'),
+                _buildDetailColumn('Dash Camera Footage?',
+                    widget.report['Dash Camera Footage?'] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 70),
+            child: Text(
+              "File Uploads",
+              style: TextStyle(
+                fontSize: 22,
+
+                fontWeight: FontWeight.bold,
+                //fontFamily: 'ArchivoNarrow',
+              ),
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn("Driver's Licence Front",
+                    widget.report["Driver's Licence Front"] ?? 'N/A'),
+                _buildDetailColumn('Proof of Insurance:',
+                    widget.report['Proof of Insurance:'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Photos of Damage/other related images:',
+                    widget.report['Photos of Damage/other related images:'] ??
+                        'N/A'),
+                _buildDetailColumn(
+                    "Photos of other driver's documents:",
+                    widget.report["Photos of other driver's documents:"] ??
+                        'N/A'),
+                _buildDetailColumn(
+                    "Obtained other driver's information?",
+                    widget.report["Obtained other driver's information?"] ??
+                        'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Other Driver's Information",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Last Name', widget.report['Last Name'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'First Name', widget.report['First Name'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Date of Birth', widget.report['Date of Birth'] ?? 'N/A'),
+                _buildDetailColumn("Driver's Licence Number",
+                    widget.report["Driver's Licence Number"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Province/State Driver's Licence Issued In:",
+                    widget.report[
+                            "Province/State Driver's Licence Issued In:"] ??
+                        'N/A'),
+                _buildDetailColumn(
+                    "Country Driver's Licence Issued In:",
+                    widget.report["Country Driver's Licence Issued In:"] ??
+                        'N/A'),
+                _buildDetailColumn("Type of Licence:",
+                    widget.report["Type of Licence:"] ?? 'N/A'),
+                _buildDetailColumn("Country of residence:",
+                    widget.report["Country of residence:"] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Address', widget.report['Address'] ?? 'N/A'),
+                _buildDetailColumn('Apt #/Unit', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn('City/Town', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Province/State', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Postal Code/Zip Code', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Cell Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Home Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Business Phone Number', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn('Email', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Action at Time of Collision', widget.report[''] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Wearing a seatbelt?', widget.report[''] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Text(
+            "Other Driver's Vehicle Information",
+            style: TextStyle(
+              fontSize: 24,
+
+              fontWeight: FontWeight.bold,
+              //fontFamily: 'ArchivoNarrow',
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Licence Plate', widget.report['Licence Plate'] ?? 'N/A'),
+                _buildDetailColumn('Insurance Provider',
+                    widget.report['Insurance Provider'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Policy Number', widget.report['Policy Number'] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Make", widget.report["Vehicle Make"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Model", widget.report["Vehicle Model"] ?? 'N/A'),
+                _buildDetailColumn(
+                    "Vehicle Year", widget.report["Vehicle Year"] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Vehicle Colour', widget.report['Vehicle Colour'] ?? 'N/A'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 70),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 70),
+            child: Text(
+              "Area of Damage",
+              style: TextStyle(
+                fontSize: 22,
+
+                fontWeight: FontWeight.bold,
+                //fontFamily: 'ArchivoNarrow',
+              ),
+            ),
+          ),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70),
+            child: Wrap(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              spacing: 80,
+              runSpacing: 60,
+              children: [
+                _buildDetailColumn(
+                    'Vehicle towed?', widget.report['Vehicle towed?'] ?? 'N/A'),
+                _buildDetailColumn('Towing company:',
+                    widget.report['Towing company:'] ?? 'N/A'),
+                _buildDetailColumn('Tow destination:',
+                    widget.report['Tow destination:'] ?? 'N/A'),
+                _buildDetailColumn('Was there a witness?',
+                    widget.report['Was there a witness?'] ?? 'N/A'),
+                _buildDetailColumn(
+                    'Witness Name', widget.report['Witness Name'] ?? 'N/A'),
+                _buildDetailColumn('Witness Phone Number',
+                    widget.report['Witness Phone Number'] ?? 'N/A'),
+              ],
+            ),
           ),
         ],
       ),
@@ -189,21 +558,22 @@ class _ReportDetailsState extends State<ReportDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildDetailColumn('Occurrence Number',
+              _buildReportDetailsColumns('Occurrence Number',
                   widget.report['Occurrence Number'].toString()),
               _buildAssigneeDropdown(widget.report),
-              _buildDetailColumn(
+              _buildReportDetailsColumns(
                   'Submission Date', widget.report['Submission Date']),
-              _buildDetailColumn(
+              _buildReportDetailsColumns(
                   'Follow up Date', widget.report['Follow up Date']),
               _buildStatusDropdown(),
             ],
           ),
           if (widget.report['Status'] == 'Approved - Pending Submission') ...{
             const SizedBox(height: 30),
-            Center(
+            Align(
+              alignment: Alignment.bottomRight,
               child: SizedBox(
-                width: 300,
+                width: 230,
                 child: ElevatedButton(
                   onPressed: () {
                     // Implement push to Versadex functionality
@@ -214,15 +584,12 @@ class _ReportDetailsState extends State<ReportDetails> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 18.0, horizontal: 10.0),
                   ),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'PUSH TO VERSADEX',
-                      style: TextStyle(
-                        color: Colors.white, // White text
-                        letterSpacing:
-                            1.5, // Adjust letter spacing for better readability in all caps
-                      ),
+                  child: const Text(
+                    'PUSH TO VERSADEX',
+                    style: TextStyle(
+                      color: Colors.white, // White text
+                      letterSpacing:
+                          1.5, // Adjust letter spacing for better readability in all caps
                     ),
                   ),
                 ),
@@ -397,6 +764,27 @@ class _ReportDetailsState extends State<ReportDetails> {
       children: [
         Text(
           label,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.grey.shade700,
+            fontSize: 16,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Text(
+          value,
+          style: TextStyle(fontSize: 14),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReportDetailsColumns(String label, String value) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
@@ -430,7 +818,7 @@ class _ReportDetailsState extends State<ReportDetails> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          const Text(
+          Text(
             'Assignee',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -460,6 +848,7 @@ class _ReportDetailsState extends State<ReportDetails> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 10),
         const Text(
           'Status',
           style: TextStyle(
