@@ -18,6 +18,17 @@ class _ReportDetailsState extends State<ReportDetails> {
     'Tom',
     'Emily'
   ]; // Add more assignees as needed
+  bool _allExpanded = false;
+
+  void _toggleAllPanels() {
+    setState(() {
+      _allExpanded = !_allExpanded;
+      for (int i = 0; i < _isExpanded.length; i++) {
+        _isExpanded[i] = _allExpanded;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -118,9 +129,11 @@ class _ReportDetailsState extends State<ReportDetails> {
     );
   }
 
+  List<bool> _isExpanded = List.generate(7, (_) => false);
+
   Widget _buildCollisionInfoContainer() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -137,403 +150,149 @@ class _ReportDetailsState extends State<ReportDetails> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Collision Information',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
+            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
+            child: Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.end, // Aligns button to the right
               children: [
-                _buildDetailColumn('Location of Collision',
-                    widget.report['Location'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Time of Collision', widget.report['Time'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Weather Conditions', widget.report['Weather'] ?? 'N/A'),
-                _buildDetailColumn('Road Conditions',
-                    widget.report['RoadConditions'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Road Surface', widget.report['RoadSurface'] ?? 'N/A'),
-                _buildDetailColumn('Pavement Markings?',
-                    widget.report['PavementMarkings'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Vehicle Direction', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Damage to other property?', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Vehicle Parked?', widget.report[''] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Text(
-            "Reporting Driver's Information",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Last Name', widget.report['Last Name'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'First Name', widget.report['First Name'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Date of Birth', widget.report['Date of Birth'] ?? 'N/A'),
-                _buildDetailColumn("Driver's Licence Number",
-                    widget.report["Driver's Licence Number"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Province/State Driver's Licence Issued In:",
-                    widget.report[
-                            "Province/State Driver's Licence Issued In:"] ??
-                        'N/A'),
-                _buildDetailColumn(
-                    'Address', widget.report['Address'] ?? 'N/A'),
-                _buildDetailColumn('Apt #/Unit', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn('City/Town', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Province/State', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Postal Code/Zip Code', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Cell Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Home Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Business Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn('Email', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Action at Time of Collision', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Wearing a seatbelt?', widget.report[''] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Text(
-            "Reporting Driver's Vehicle Information",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Licence Plate', widget.report['Licence Plate'] ?? 'N/A'),
-                _buildDetailColumn('Insurance Provider',
-                    widget.report['Insurance Provider'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Policy Number', widget.report['Policy Number'] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Make", widget.report["Vehicle Make"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Model", widget.report["Vehicle Model"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Year", widget.report["Vehicle Year"] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Vehicle Colour', widget.report['Vehicle Colour'] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 70),
-            child: Text(
-              "Area of Damage",
-              style: TextStyle(
-                fontSize: 22,
-
-                fontWeight: FontWeight.bold,
-                //fontFamily: 'ArchivoNarrow',
-              ),
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Vehicle towed?', widget.report['Vehicle towed?'] ?? 'N/A'),
-                _buildDetailColumn('Towing company:',
-                    widget.report['Towing company:'] ?? 'N/A'),
-                _buildDetailColumn('Tow destination:',
-                    widget.report['Tow destination:'] ?? 'N/A'),
-                _buildDetailColumn('Was there a witness?',
-                    widget.report['Was there a witness?'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Witness Name', widget.report['Witness Name'] ?? 'N/A'),
-                _buildDetailColumn('Witness Phone Number',
-                    widget.report['Witness Phone Number'] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Text(
-            "Passenger(s) Information",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildDetailColumn('# of Passengers',
-                    widget.report['# of Passengers'] ?? 'N/A'),
-                const SizedBox(height: 60),
-                Wrap(
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  spacing: 80,
-                  runSpacing: 60,
-                  children: [
-                    _buildDetailColumn(
-                        'Last Name', widget.report['Last Name'] ?? 'N/A'),
-                    _buildDetailColumn(
-                        'First Name', widget.report['First Name'] ?? 'N/A'),
-                    _buildDetailColumn(
-                        'Phone Number', widget.report['Phone Number'] ?? 'N/A'),
-                  ],
+                ElevatedButton(
+                  onPressed: _toggleAllPanels,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(_allExpanded ? 'Collapse All' : 'Expand All'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(0, 61, 121, 1),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(20), // Rounded corners
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 70),
-          const Text(
-            "Reporting Driver's Statement",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Statement', widget.report['Statement'] ?? 'N/A'),
-                _buildDetailColumn('Dash Camera Footage?',
-                    widget.report['Dash Camera Footage?'] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 70),
-            child: Text(
-              "File Uploads",
-              style: TextStyle(
-                fontSize: 22,
-
-                fontWeight: FontWeight.bold,
-                //fontFamily: 'ArchivoNarrow',
+          ExpansionPanelList(
+            elevation: 1,
+            expandedHeaderPadding: EdgeInsets.all(16),
+            expansionCallback: (int index, bool isExpanded) {
+              setState(() {
+                _isExpanded[index] = !isExpanded;
+              });
+            },
+            children: [
+              _buildExpansionPanel(
+                0,
+                'Collision Information',
+                _buildCollisionInfoContent(),
               ),
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn("Driver's Licence Front",
-                    widget.report["Driver's Licence Front"] ?? 'N/A'),
-                _buildDetailColumn('Proof of Insurance:',
-                    widget.report['Proof of Insurance:'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Photos of Damage/other related images:',
-                    widget.report['Photos of Damage/other related images:'] ??
-                        'N/A'),
-                _buildDetailColumn(
-                    "Photos of other driver's documents:",
-                    widget.report["Photos of other driver's documents:"] ??
-                        'N/A'),
-                _buildDetailColumn(
-                    "Obtained other driver's information?",
-                    widget.report["Obtained other driver's information?"] ??
-                        'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Text(
-            "Other Driver's Information",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Last Name', widget.report['Last Name'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'First Name', widget.report['First Name'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Date of Birth', widget.report['Date of Birth'] ?? 'N/A'),
-                _buildDetailColumn("Driver's Licence Number",
-                    widget.report["Driver's Licence Number"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Province/State Driver's Licence Issued In:",
-                    widget.report[
-                            "Province/State Driver's Licence Issued In:"] ??
-                        'N/A'),
-                _buildDetailColumn(
-                    "Country Driver's Licence Issued In:",
-                    widget.report["Country Driver's Licence Issued In:"] ??
-                        'N/A'),
-                _buildDetailColumn("Type of Licence:",
-                    widget.report["Type of Licence:"] ?? 'N/A'),
-                _buildDetailColumn("Country of residence:",
-                    widget.report["Country of residence:"] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Address', widget.report['Address'] ?? 'N/A'),
-                _buildDetailColumn('Apt #/Unit', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn('City/Town', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Province/State', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Postal Code/Zip Code', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Cell Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Home Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Business Phone Number', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn('Email', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Action at Time of Collision', widget.report[''] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Wearing a seatbelt?', widget.report[''] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Text(
-            "Other Driver's Vehicle Information",
-            style: TextStyle(
-              fontSize: 24,
-
-              fontWeight: FontWeight.bold,
-              //fontFamily: 'ArchivoNarrow',
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 60),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Licence Plate', widget.report['Licence Plate'] ?? 'N/A'),
-                _buildDetailColumn('Insurance Provider',
-                    widget.report['Insurance Provider'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Policy Number', widget.report['Policy Number'] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Make", widget.report["Vehicle Make"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Model", widget.report["Vehicle Model"] ?? 'N/A'),
-                _buildDetailColumn(
-                    "Vehicle Year", widget.report["Vehicle Year"] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Vehicle Colour', widget.report['Vehicle Colour'] ?? 'N/A'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 70),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 70),
-            child: Text(
-              "Area of Damage",
-              style: TextStyle(
-                fontSize: 22,
-
-                fontWeight: FontWeight.bold,
-                //fontFamily: 'ArchivoNarrow',
+              _buildExpansionPanel(
+                1,
+                "Reporting Driver's Information",
+                _buildReportingDriverInfoContent(),
               ),
-            ),
-          ),
-          const SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 70),
-            child: Wrap(
-              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              spacing: 80,
-              runSpacing: 60,
-              children: [
-                _buildDetailColumn(
-                    'Vehicle towed?', widget.report['Vehicle towed?'] ?? 'N/A'),
-                _buildDetailColumn('Towing company:',
-                    widget.report['Towing company:'] ?? 'N/A'),
-                _buildDetailColumn('Tow destination:',
-                    widget.report['Tow destination:'] ?? 'N/A'),
-                _buildDetailColumn('Was there a witness?',
-                    widget.report['Was there a witness?'] ?? 'N/A'),
-                _buildDetailColumn(
-                    'Witness Name', widget.report['Witness Name'] ?? 'N/A'),
-                _buildDetailColumn('Witness Phone Number',
-                    widget.report['Witness Phone Number'] ?? 'N/A'),
-              ],
-            ),
-          ),
+
+              // Add more panels for other sections
+            ],
+          )
         ],
       ),
     );
   }
+
+  ExpansionPanel _buildExpansionPanel(int index, String title, Widget content) {
+    return ExpansionPanel(
+      canTapOnHeader: true,
+      headerBuilder: (BuildContext context, bool isExpanded) {
+        return ListTile(
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        );
+      },
+      body: content,
+      isExpanded: _isExpanded[index],
+    );
+  }
+
+  Widget _buildCollisionInfoContent() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
+      child: Wrap(
+        spacing: 40,
+        runSpacing: 40,
+        children: [
+          _buildDetailColumn(
+              'Location of Collision', widget.report['Location'] ?? 'N/A'),
+          _buildDetailColumn(
+              '# of Vehicles Involved', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Time of Collision', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn('Weather', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn('Road Conditions', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn('Road Surface', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn('Road Alignment', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Pavement Markings?', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Vehicle Direction', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Damage to Property?', widget.report['Time'] ?? 'N/A'),
+          _buildDetailColumn('Vehicle Parked?', widget.report['Time'] ?? 'N/A'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildReportingDriverInfoContent() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
+      child: Wrap(
+        spacing: 40,
+        runSpacing: 40,
+        children: [
+          _buildDetailColumn('Last Name', widget.report['Last Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'First Name', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Date of Birth', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              "Driver's License Number", widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn("Driver's License Province/State",
+              widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn('Address', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Apt #/Unit', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn('City/Town', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Province/State', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Postal Code/Zip Code', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Cell Phone Number', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Home Phone Number', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Business Phone Number', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn('Email', widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn('Action at time of collision',
+              widget.report['First Name'] ?? 'N/A'),
+          _buildDetailColumn(
+              'Wearing Seatbelt?', widget.report['First Name'] ?? 'N/A'),
+          // Add other reporting driver info fields
+        ],
+      ),
+    );
+  }
+
+// Create similar methods for other sections
 
   Widget _buildReportDetailsContainer() {
     return Container(
@@ -759,23 +518,26 @@ class _ReportDetailsState extends State<ReportDetails> {
   // }
 
   Widget _buildDetailColumn(String label, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.grey.shade700,
-            fontSize: 16,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade700,
+              fontSize: 16,
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          value,
-          style: TextStyle(fontSize: 14),
-        ),
-      ],
+          const SizedBox(height: 20),
+          Text(
+            value,
+            style: TextStyle(fontSize: 14),
+          ),
+        ],
+      ),
     );
   }
 
