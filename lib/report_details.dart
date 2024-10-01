@@ -225,73 +225,135 @@ class _ReportDetailsState extends State<ReportDetails> {
   Widget _buildCollisionInfoContent() {
     return Padding(
       padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
-      child: Wrap(
-        spacing: 40,
-        runSpacing: 40,
-        children: [
-          _buildDetailColumn(
-              'Location of Collision', widget.report['Location'] ?? 'N/A'),
-          _buildDetailColumn(
-              '# of Vehicles Involved', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Time of Collision', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn('Weather', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn('Road Conditions', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn('Road Surface', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn('Road Alignment', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Pavement Markings?', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Vehicle Direction', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Damage to Property?', widget.report['Time'] ?? 'N/A'),
-          _buildDetailColumn('Vehicle Parked?', widget.report['Time'] ?? 'N/A'),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Calculate the width for 3 items per row
+          double columnWidth =
+              (constraints.maxWidth - 80) / 3; // Adjust for spacing
+          return Wrap(
+            spacing: 40, // Horizontal space between columns
+            runSpacing: 40, // Vertical space between rows
+            children: [
+              Container(
+                width:
+                    columnWidth, // Ensure each item takes up calculated width
+                child: _buildDetailColumn('Location of Collision',
+                    widget.report['Location'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn(
+                    '# of Vehicles Involved',
+                    widget.report['# of Vehicles Involved'] ?? 'N/A',
+                    columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Time of Collision',
+                    widget.report['Time'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn(
+                    'Weather', widget.report['Weather'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Road Conditions',
+                    widget.report['Road Conditions'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Road Surface',
+                    widget.report['Road Surface'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Road Alignment',
+                    widget.report['Road Alignment'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Pavement Markings?',
+                    widget.report['Pavement Markings?'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Vehicle Direction',
+                    widget.report['Vehicle Direction'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Damage to Property?',
+                    widget.report['Damage to Property?'] ?? 'N/A', columnWidth),
+              ),
+              Container(
+                width: columnWidth,
+                child: _buildDetailColumn('Vehicle Parked?',
+                    widget.report['Vehicle Parked?'] ?? 'N/A', columnWidth),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 
   Widget _buildReportingDriverInfoContent() {
     return Padding(
-      padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
-      child: Wrap(
-        spacing: 40,
-        runSpacing: 40,
-        children: [
-          _buildDetailColumn('Last Name', widget.report['Last Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'First Name', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Date of Birth', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              "Driver's License Number", widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn("Driver's License Province/State",
-              widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn('Address', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Apt #/Unit', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn('City/Town', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Province/State', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Postal Code/Zip Code', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Cell Phone Number', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Home Phone Number', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Business Phone Number', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn('Email', widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn('Action at time of collision',
-              widget.report['First Name'] ?? 'N/A'),
-          _buildDetailColumn(
-              'Wearing Seatbelt?', widget.report['First Name'] ?? 'N/A'),
-          // Add other reporting driver info fields
-        ],
+      padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Set the desired width of each column
+          double columnWidth =
+              (constraints.maxWidth - 80) / 3; // 80 is the total spacing
+          return Wrap(
+            spacing: 40, // Horizontal space between columns
+            runSpacing: 40, // Vertical space between rows
+            children: [
+              _buildDetailColumn('Last Name',
+                  widget.report['Last Name'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('First Name',
+                  widget.report['First Name'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Date of Birth',
+                  widget.report['Date of Birth'] ?? 'N/A', columnWidth),
+              _buildDetailColumn("Driver's License Number",
+                  widget.report['Driver License Number'] ?? 'N/A', columnWidth),
+              _buildDetailColumn(
+                  "Driver's License Province/State",
+                  widget.report['Driver License Province/State'] ?? 'N/A',
+                  columnWidth),
+              _buildDetailColumn(
+                  'Address', widget.report['Address'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Apt #/Unit',
+                  widget.report['Apt #/Unit'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('City/Town',
+                  widget.report['City/Town'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Province/State',
+                  widget.report['Province/State'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Postal Code/Zip Code',
+                  widget.report['Postal Code/Zip Code'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Cell Phone Number',
+                  widget.report['Cell Phone Number'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Home Phone Number',
+                  widget.report['Home Phone Number'] ?? 'N/A', columnWidth),
+              _buildDetailColumn('Business Phone Number',
+                  widget.report['Business Phone Number'] ?? 'N/A', columnWidth),
+              _buildDetailColumn(
+                  'Email', widget.report['Email'] ?? 'N/A', columnWidth),
+              _buildDetailColumn(
+                  'Action at time of collision',
+                  widget.report['Action at time of collision'] ?? 'N/A',
+                  columnWidth),
+              _buildDetailColumn('Wearing Seatbelt?',
+                  widget.report['Wearing Seatbelt?'] ?? 'N/A', columnWidth),
+              // Add other reporting driver info fields as needed
+            ],
+          );
+        },
       ),
     );
   }
-
 // Create similar methods for other sections
 
   Widget _buildReportDetailsContainer() {
@@ -517,25 +579,15 @@ class _ReportDetailsState extends State<ReportDetails> {
   //   );
   // }
 
-  Widget _buildDetailColumn(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+  Widget _buildDetailColumn(String title, String value, double width) {
+    return Container(
+      width: width, // Set the width for each column
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey.shade700,
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            value,
-            style: TextStyle(fontSize: 14),
-          ),
+          Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(height: 8),
+          Text(value),
         ],
       ),
     );
@@ -624,8 +676,6 @@ class _ReportDetailsState extends State<ReportDetails> {
           items: const [
             'Open',
             'In Progress',
-            'On Hold',
-            'Approved - Pending Submission',
             'Completed - Sent to Versadex',
             'Rejected'
           ],

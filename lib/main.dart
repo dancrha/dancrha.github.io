@@ -33,8 +33,6 @@ class _DashboardPageState extends State<DashboardPage> {
   List<String> dropdownItems = [
     'Open',
     'In Progress',
-    'On Hold',
-    'Approved - Pending Submission',
     'Completed - Sent to Versadex',
     'Rejected'
   ];
@@ -42,8 +40,6 @@ class _DashboardPageState extends State<DashboardPage> {
   List<String> assignees = [
     'Open',
     'In Progress',
-    'On Hold',
-    'Approved - Pending Submission',
     'Completed - Sent to Versadex',
     'Rejected'
   ];
@@ -62,20 +58,6 @@ class _DashboardPageState extends State<DashboardPage> {
       'Submission Date': '2024/07/10',
       'Follow up Date': '2024/07/10',
       'Status': 'In Progress',
-    },
-    {
-      'Occurrence Number': 3,
-      'Assignee': 'Tom',
-      'Submission Date': '2024/07/10',
-      'Follow up Date': '2024/07/10',
-      'Status': 'On Hold',
-    },
-    {
-      'Occurrence Number': 3,
-      'Assignee': 'Tom',
-      'Submission Date': '2024/07/10',
-      'Follow up Date': '2024/07/10',
-      'Status': 'Approved - Pending Submission',
     },
     {
       'Occurrence Number': 3,
@@ -149,10 +131,6 @@ class _DashboardPageState extends State<DashboardPage> {
         return Icons.check_circle;
       case 'Open':
         return Icons.radio_button_unchecked;
-      case 'Approved - Pending Submission':
-        return Icons.task_alt;
-      case 'On Hold':
-        return Icons.pause_circle_outline;
       case 'Rejected':
         return Icons.cancel;
       default:
@@ -163,15 +141,11 @@ class _DashboardPageState extends State<DashboardPage> {
   Color getStatusColor(String status) {
     switch (status) {
       case 'Open':
-        return Colors.grey;
+        return Colors.blue.shade300;
       case 'In Progress':
-        return Colors.yellow.shade700;
-      case 'Approved - Pending Submission':
-        return Colors.blue.shade700;
+        return Colors.yellow.shade500;
       case 'Completed - Sent to Versadex':
-        return Colors.green;
-      case 'On Hold':
-        return Colors.yellow.shade900;
+        return Colors.green.shade300;
       case 'Rejected':
         return Colors.red;
       default:
@@ -304,7 +278,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               cursorColor: const Color.fromRGBO(0, 61, 121,
                                   1), // Set cursor color to dark blue
                               decoration: const InputDecoration(
-                                labelText: 'Name',
+                                labelText: 'Submitted By:',
                                 floatingLabelStyle: TextStyle(
                                   color: Color.fromRGBO(0, 61, 121, 1),
                                 ),
@@ -453,7 +427,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         Icon(
                                           getStatusIcon(report['Status']),
                                           size: 20,
-                                          color: Colors.white,
+                                          color: Colors.black,
                                         ),
                                         const SizedBox(
                                             width:
@@ -462,7 +436,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                           Text(
                                             report['Status'],
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.black),
                                           ),
                                       ],
                                     ),

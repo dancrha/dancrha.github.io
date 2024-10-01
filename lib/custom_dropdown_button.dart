@@ -112,12 +112,12 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton>
                           Icon(
                             getStatusIcon(value),
                             size: 20,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                           const SizedBox(width: 8),
                           Text(
                             value,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                           ),
                         ],
                       ),
@@ -191,12 +191,14 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton>
               Icon(
                 getStatusIcon(_currentValue),
                 size: 20,
-                color: Colors.white,
+                color: Colors.black,
               ),
               const SizedBox(width: 8),
               Text(
                 _currentValue,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  color: Colors.black,
+                ),
               ),
             ],
           ),
@@ -212,10 +214,6 @@ IconData getStatusIcon(String status) {
       return Icons.check_circle;
     case 'Open':
       return Icons.radio_button_unchecked;
-    case 'Approved - Pending Submission':
-      return Icons.task_alt;
-    case 'On Hold':
-      return Icons.pause_circle_outline;
     case 'Rejected':
       return Icons.cancel;
     default:
@@ -226,17 +224,13 @@ IconData getStatusIcon(String status) {
 Color getStatusColor(String status) {
   switch (status) {
     case 'Open':
-      return Colors.grey;
+      return Colors.blue.shade200;
     case 'In Progress':
-      return Colors.yellow.shade700;
-    case 'Approved - Pending Submission':
-      return Colors.blue.shade700;
+      return Colors.yellow.shade200;
     case 'Completed - Sent to Versadex':
-      return Colors.green;
-    case 'On Hold':
-      return Colors.yellow.shade900;
+      return Colors.green.shade200;
     case 'Rejected':
-      return Colors.red;
+      return Colors.red.shade200;
     default:
       return Colors.grey;
   }
